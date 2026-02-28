@@ -1,0 +1,453 @@
+:root {
+    --bg-color: #050505;
+    --card-bg: rgba(255, 255, 255, 0.05);
+    --border-color: rgba(255, 255, 255, 0.1);
+    --text-primary: #ffffff;
+    --text-secondary: #a0a0a0;
+    --accent-green: #00ff88;
+    --accent-yellow: #ffcc00;
+    --accent-red: #ff4d4d;
+    --accent-blue: #00d2ff;
+    --font-family: 'Outfit', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    font-family: var(--font-family);
+    overflow-x: hidden;
+}
+
+#app {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Header Styles */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 3rem;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.logo .icon {
+    font-size: 2rem;
+}
+
+.logo h1 {
+    font-size: 1.8rem;
+    letter-spacing: -0.5px;
+    font-weight: 700;
+    background: linear-gradient(to right, #fff, #888);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.status-badge {
+    background: var(--card-bg);
+    padding: 0.5rem 1rem;
+    border-radius: 100px;
+    border: 1px solid var(--border-color);
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-secondary);
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent-green);
+}
+
+.pulse {
+    animation: pulse-ring 2s infinite;
+}
+
+@keyframes pulse-ring {
+    0% {
+        transform: scale(0.8);
+        box-shadow: 0 0 0 0 rgba(0, 255, 136, 0.7);
+    }
+
+    70% {
+        box-shadow: 0 0 0 10px rgba(0, 255, 136, 0);
+    }
+
+    100% {
+        transform: scale(0.8);
+    }
+}
+
+/* Hero Section / Air Quality Card */
+.hero-section {
+    margin-bottom: 2rem;
+}
+
+.air-card {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+    border: 1px solid var(--border-color);
+    border-radius: 24px;
+    padding: 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    backdrop-filter: blur(10px);
+    position: relative;
+    overflow: hidden;
+}
+
+.air-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(0, 255, 136, 0.05) 0%, transparent 60%);
+    pointer-events: none;
+}
+
+.air-info h2 {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    font-weight: 400;
+    margin-bottom: 1rem;
+}
+
+.air-value {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+}
+
+.air-value span {
+    font-size: 5rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.air-value small {
+    font-size: 1.5rem;
+    color: var(--text-secondary);
+}
+
+.air-status {
+    margin-top: 1rem;
+    padding: 0.4rem 1.2rem;
+    border-radius: 8px;
+    display: inline-block;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.8rem;
+}
+
+.status-good {
+    background: rgba(0, 255, 136, 0.15);
+    color: var(--accent-green);
+}
+
+.status-moderate {
+    background: rgba(255, 204, 0, 0.15);
+    color: var(--accent-yellow);
+}
+
+.status-poor {
+    background: rgba(255, 77, 77, 0.15);
+    color: var(--accent-red);
+}
+
+/* SVG Meter */
+.air-visual {
+    width: 180px;
+    height: 180px;
+}
+
+.air-visual svg {
+    transform: rotate(-90deg);
+}
+
+.air-visual circle {
+    fill: none;
+    stroke-width: 8;
+    stroke-linecap: round;
+}
+
+.air-visual .bg {
+    stroke: var(--border-color);
+}
+
+.air-visual .meter {
+    stroke: var(--accent-green);
+    stroke-dasharray: 283;
+    stroke-dashoffset: 283;
+    transition: stroke-dashoffset 1s ease, stroke 1s ease;
+}
+
+/* Metrics Grid */
+.metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.metric-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    transition: transform 0.3s ease;
+}
+
+.metric-card:hover {
+    transform: translateY(-5px);
+}
+
+.metric-icon {
+    font-size: 2.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    width: 64px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 16px;
+}
+
+.metric-data h3 {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    font-weight: 400;
+}
+
+.metric-data p {
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
+/* Hardware Dashboard */
+.hardware-dashboard {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 24px;
+    padding: 2rem;
+}
+
+.hardware-title {
+    margin-bottom: 2rem;
+}
+
+.hardware-title h2 {
+    font-size: 1.5rem;
+}
+
+.hardware-title p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.components-row {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 1.5rem;
+}
+
+.comp-box {
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.comp-box h3 {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    letter-spacing: 1px;
+    margin-bottom: 1.5rem;
+}
+
+/* LEDs */
+.led-group {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.led-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.7rem;
+    color: var(--text-secondary);
+}
+
+.led {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: #333;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease;
+}
+
+.led.green.active {
+    background: var(--accent-green);
+    box-shadow: 0 0 15px var(--accent-green);
+}
+
+.led.yellow.active {
+    background: var(--accent-yellow);
+    box-shadow: 0 0 15px var(--accent-yellow);
+}
+
+.led.red.active {
+    background: var(--accent-red);
+    box-shadow: 0 0 15px var(--accent-red);
+}
+
+/* Fan */
+.fan-icon {
+    font-size: 3rem;
+    display: inline-block;
+    transition: transform 0.5s linear;
+}
+
+.fan-spinning .fan-icon {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Buzzer */
+.buzzer-icon {
+    font-size: 3rem;
+    transition: all 0.3s ease;
+}
+
+.buzzer-active .buzzer-icon {
+    animation: shake 0.5s ease infinite;
+    color: var(--accent-red);
+}
+
+@keyframes shake {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-5px) rotate(-5deg);
+    }
+
+    75% {
+        transform: translateX(5px) rotate(5deg);
+    }
+}
+
+/* Notifications */
+.notification-container {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    width: 90%;
+    max-width: 500px;
+    pointer-events: none;
+}
+
+.alert-box {
+    background: rgba(255, 77, 77, 0.9);
+    color: white;
+    padding: 1rem 1.5rem;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    box-shadow: 0 10px 30px rgba(255, 77, 77, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    animation: slide-down 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes slide-down {
+    from {
+        transform: translateY(-100px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.alert-icon {
+    font-size: 1.5rem;
+}
+
+.alert-content h4 {
+    font-size: 1rem;
+    margin-bottom: 2px;
+}
+
+.alert-content p {
+    font-size: 0.8rem;
+    opacity: 0.9;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .components-row {
+        grid-template-columns: 1fr;
+    }
+
+    .air-card {
+        flex-direction: column;
+        text-align: center;
+        gap: 2rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .metrics-grid {
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aether | IoT Air Purifier</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+    <div id="app">
+        <!-- Notification Banner -->
+        <div id="notification-box" class="notification-container"></div>
+
+        <header>
+            <div class="logo">
+                <span class="icon">🍃</span>
+                <h1>Aether</h1>
+            </div>
+            <div class="status-badge" id="device-status">
+                <span class="dot pulse"></span>
+                Connected
+            </div>
+        </header>
+
+        <main>
+            <!-- Air Quality Section -->
+            <section class="hero-section">
+                <div class="air-card" id="air-card">
+                    <div class="air-info">
+                        <h2>Air Quality</h2>
+                        <div class="air-value">
+                            <span id="air-ppm">--</span>
+                            <small>PPM</small>
+                        </div>
+                        <div class="air-status" id="air-status">Initializing...</div>
+                    </div>
+                    <div class="air-visual">
+                        <svg viewBox="0 0 100 100">
+                            <circle class="bg" cx="50" cy="50" r="45"></circle>
+                            <circle class="meter" id="air-meter" cx="50" cy="50" r="45"></circle>
+                        </svg>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Metrics Grid -->
+            <section class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-icon">🌡️</div>
+                    <div class="metric-data">
+                        <h3>Temperature</h3>
+                        <p><span id="temp-val">--</span>°C</p>
+                    </div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-icon">💧</div>
+                    <div class="metric-data">
+                        <h3>Humidity</h3>
+                        <p><span id="hum-val">--</span>%</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Hardware Dashboard -->
+            <section class="hardware-dashboard">
+                <div class="hardware-title">
+                    <h2>Live Components</h2>
+                    <p>Monitoring physical device states</p>
+                </div>
+
+                <div class="components-row">
+                    <!-- LEDs -->
+                    <div class="comp-box leds">
+                        <h3>LED Indicators</h3>
+                        <div class="led-group">
+                            <div class="led-item">
+                                <div class="led green" id="led-green"></div>
+                                <span>Good</span>
+                            </div>
+                            <div class="led yellow" id="led-yellow"></div>
+                            <span>Moderate</span>
+                        </div>
+                        <div class="led-item">
+                            <div class="led red" id="led-red"></div>
+                            <span>Poor</span>
+                        </div>
+                    </div>
+
+                    <!-- Buzzer/Alert -->
+                    <div class="comp-box buzzer-box" id="buzzer-box">
+                        <h3>Alert Buzzer</h3>
+                        <div class="buzzer-icon">🔔</div>
+                        <p id="buzzer-status">Quiet</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>ESP32 IoT Node • MQ135 • DHT22</p>
+        </footer>
+    </div>
+    <script type="module" src="/main.js"></script>
+</body>
+
+</html>
